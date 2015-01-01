@@ -1,0 +1,129 @@
+import csv
+import pymongo
+import datetime
+
+def readRepMax(infile):
+	keys = []
+	RepMaxData = []
+	with open(infile, 'rU') as f:
+		reader = csv.reader(f)
+		i = 0
+		for row in reader:
+			if i == 0:
+				date = row[0]
+				date = date.replace('/', ' ')
+				date = date.split()
+				for j in range(3):
+					date[j] = int(date[j])
+				test_date = {'Day': date[1], 'Month': date[0], 'Year': date[2]}
+			elif i == 1:
+				keys = row
+				print keys
+			else:
+				temp = {}
+				temp['Day'] = test_date['Day']
+				temp['Month'] = test_date['Month']
+				temp['Year'] = test_date['Year']
+
+				# Rank
+				if(row[0] is ''):
+					temp[keys[0]] = ''
+				else:
+					temp[keys[0]] = int(row[0])
+
+				# Name
+				temp[keys[1]] = row[1]
+
+				# Squat
+				if(row[2] is ''):
+					Squat = ''
+				else:
+					Squat = row[2]
+				temp[keys[2]] = Squat
+
+				# Deadlift
+				if(row[3] is ''):
+					Deadlift = ''
+				else:
+					Deadlift = int(row[3])
+				temp[keys[3]] = Deadlift
+
+				# Average
+				if(Squat is '' and Deadlift is ''):
+					Average = ''
+				elif(Squat is ''):
+					Average = float(Deadlift)
+				elif(Deadlift is ''):
+					Average = float(Squat)
+				else:
+					Average = float((int(Deadlift) + int(Squat)))/2
+				temp[keys[4]] = Average
+
+				temp['Test'] = 'Rep Max'
+				
+				RepMaxData.append(temp)
+			i += 1
+	writeRepMax(RepMaxData)
+
+def writeRepMax(RepMaxData):
+
+	client = pymongo.MongoClient('localhost', 27017)
+	db = client['C150']
+	# db.drop_collection('Rep Max')
+	RepMax = db['Rep Max']
+
+	# Write to text file
+	textfilename = 'Rep Max.txt'
+	file_out = open(textfilename, 'w')
+	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
+					'Squat' + '\t' + '\t' + 'Deadlift' + '\t' + 'AvgSPM' + '\n')	
+	file_out.write('\n')
+
+	for i in range(0, len(RepMaxData)):
+		
+		if RepMaxData[i]:
+			query = {'Day': RepMaxData[i]['Day'], \
+					'Month': RepMaxData[i]['Month'], \
+					'Year': RepMaxData[i]['Year'], \
+					'Name': RepMaxData[i]['Name'], \
+					'Test': 'Rep Max'}
+			update = RepMaxData[i]
+			RepMax.update(query, update, True)
+
+	for rower in RepMax.find():
+		# print rower
+		Month = str(rower['Month'])
+		Day = str(rower['Day'])
+		Year = str(rower['Year'])
+		Rank = str(rower['Rank'])
+		Name = rower['Name']
+		Squat = str(rower['Squat'])
+		Deadlift = str(rower['Deadlift'])
+		Average = str(rower['Average'])
+
+		if(len(Name)<8):
+			if((len(Month) + len(Day) + len(Year)) < 6):
+				line = Month + '/' + Day + '/' + Year + '\t' + '\t' + \
+						Rank + '\t' + Name + '\t' + '\t' + \
+						Squat + '\t' + '\t' + Deadlift + '\t' + '\t' + \
+						Average + '\n'
+			else:
+				line = Month + '/' + Day + '/' + Year + '\t' + \
+						Rank + '\t' + Name + '\t' + '\t' + \
+						Squat + '\t' + '\t' + Deadlift + '\t' + '\t' + \
+						Average + '\n'
+		else:
+			if((len(Month) + len(Day) + len(Year)) < 6):
+				line = Month + '/' + Day + '/' + Year + '\t' + '\t' + \
+						Rank + '\t' + Name + '\t' + \
+						Squat + '\t' + '\t' + Deadlift + '\t' + '\t' + \
+						Average + '\n'
+			else:
+				line = Month + '/' + Day + '/' + Year + '\t' + \
+						Rank + '\t' + Name + '\t' + \
+						Squat + '\t' + '\t' + Deadlift + '\t' + '\t' + \
+						Average + '\n'
+		file_out.write(line)
+
+	file_out.close()
+	client.close()
