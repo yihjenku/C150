@@ -2,7 +2,7 @@ import pygal
 import pymongo
 import search as s
 
-def graph(name):
+def graphOlympic(name):
 
 	client = pymongo.MongoClient('localhost', 27017)
 	db = client['C150']
@@ -13,9 +13,9 @@ def graph(name):
 
 	FortyMinuteData = []
 	for rower in RowerDB.find({'Test': 'Forty Minute'}) \
-						.sort([('Year', pymongo.ASCENDING), \
+						.sort( [('Year', pymongo.ASCENDING), \
 								('Month', pymongo.ASCENDING), \
-								('Rank', pymongo.ASCENDING)]):
+								('Rank', pymongo.ASCENDING)] ):
 		
 		if (isinstance(rower['Meters'], basestring)):
 			FortyMinuteData.append(0)
@@ -24,7 +24,7 @@ def graph(name):
 
 		if not (isinstance(rower['Weight'], basestring)):
 			WeightData.append(rower['Weight'])
-	print FortyMinuteData
+	# print FortyMinuteData
 
 	OneMinuteData = []
 	for rower in RowerDB.find({'Test': 'One Minute'}) \
@@ -39,7 +39,7 @@ def graph(name):
 
 		if not (isinstance(rower['Weight'], basestring)):
 			WeightData.append(rower['Weight'])
-	print OneMinuteData
+	# print OneMinuteData
 
 	RepMaxData = []
 	for rower in RowerDB.find({'Test': 'Rep Max'}) \
@@ -50,7 +50,7 @@ def graph(name):
 			RepMaxData.append(0)
 		else:
 			RepMaxData.append(rower['Average'])
-	print RepMaxData
+	# print RepMaxData
 
 	MaxWattData = []
 	for rower in RowerDB.find({'Test': 'Max Watt'}) \
@@ -61,9 +61,9 @@ def graph(name):
 			MaxWattData.append(0)
 		else:
 			MaxWattData.append(rower['High'])
-	print MaxWattData
+	# print MaxWattData
 
-	print WeightData
+	# print WeightData
 	weight = weightCalc(WeightData)
 
 	plotRadar(name, weight, FortyMinuteData, OneMinuteData, RepMaxData, MaxWattData)
@@ -104,13 +104,10 @@ def plotRadar(Name, Weight, FMData, OMData, RMData, MWData):
 		percentOne = percentCalc(OMData[i], OlympicOneTD)
 		percentRM = percentCalc(RMData[i], Weight)
 		percentMaxWatt = percentCalc(MWData[i], OlympicMaxWatt)
-		print [percentForty, percentOne, percentRM, percentMaxWatt]
+		# print [percentForty, percentOne, percentRM, percentMaxWatt]
 		radar_chart.add(Title, [percentForty, percentOne, percentRM, percentMaxWatt])
 
 	radar_chart.add('Olympic Standard', [1, 1, 1, 1,])
 
-	radar_chart.render_to_file(Name + '.svg')
-
-
-
+	radar_chart.render_to_file('static/OlympicGraphs/' + Name + '.svg')
 

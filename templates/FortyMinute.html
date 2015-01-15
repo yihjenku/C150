@@ -1,0 +1,79 @@
+{% extends 'search.html' %}
+
+{% block rower %}
+
+<style type="text/css">
+    td {
+        text-align: left;}
+    th {
+        text-align: left;}
+    table {
+        width: 1200px;}
+    h1 {
+        font-family: Verdana, sans-serif;}
+    h2 {
+        text-align: center;}
+    h2.title{
+        color: #66CCFF;}
+    body {
+        font-family: Helvetica, sans-serif;}
+    tfoot { 
+        border-top-style: solid; border-top-color: #66CCFF; 
+        border-top-style: solid; border-bottom-color: #66CCFF;}
+</style>
+
+{% if data['items'] %}
+{% for entry in data['items'] %}
+    <h2 class='title'>
+        Forty Minute Test {{ entry['date'] }}
+    </h2>
+
+    <body> 
+    <table align=center> 
+        <thead>
+            <tr>
+                <th> Rank </th>
+                <th> Name </th>
+                <th> 4' </th>
+                <th> 8' </th>
+                <th> 12' </th>
+                <th> 16' </th>
+                <th> 20' </th>
+                <th> 24' </th>
+                <th> 28' </th>
+                <th> 32' </th>
+                <th> 36' </th>
+                <th> 40' </th>
+                <th> Avg Split </th>
+                <th> Avg Rate </th>
+                <th> Meters </th>
+                <th> Weight </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rower in entry['rowers'] %}
+            <tr>                
+                <td> {{ rower['Rank'] }} </td> 
+                <td> {{ rower['Name'] }} </td>
+                <td> {{ rower['4']['String'] }} </td>
+                <td> {{ rower['8']['String'] }} </td>
+                <td> {{ rower['12']['String'] }} </td>              
+                <td> {{ rower['16']['String'] }} </td>
+                <td> {{ rower['20']['String'] }} </td>
+                <td> {{ rower['24']['String'] }} </td>
+                <td> {{ rower['28']['String'] }} </td>
+                <td> {{ rower['32']['String'] }} </td>
+                <td> {{ rower['36']['String'] }} </td>
+                <td> {{ rower['40']['String'] }} </td>
+                <td> {{ rower['Avg Split']['String'] }} </td>
+                <td> {{ rower['Avg SPM'] }} </td>
+                <td> {{ rower['Meters'] }} </td>
+                <td> {{ rower['Weight'] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

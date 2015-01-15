@@ -1,10 +1,14 @@
 import csv
 import pymongo
 import datetime
+import os
 
-def readRepMax(infile):
+def translate(infile):
 	keys = []
 	RepMaxData = []
+	test_date = {}
+	test_name = 'Rep Max'
+	total_rowers = 0
 	with open(infile, 'rU') as f:
 		reader = csv.reader(f)
 		i = 0
@@ -18,18 +22,23 @@ def readRepMax(infile):
 				test_date = {'Day': date[1], 'Month': date[0], 'Year': date[2]}
 			elif i == 1:
 				keys = row
-				print keys
+				# print keys
 			else:
 				temp = {}
-				temp['Day'] = test_date['Day']
-				temp['Month'] = test_date['Month']
-				temp['Year'] = test_date['Year']
+				Day = test_date['Day']
+				Month = test_date['Month']
+				Year = test_date['Year']
+				temp['Day'] = Day
+				temp['Month'] = Month
+				temp['Year'] = Year
+				temp['Date'] = str(Month) + '/' + str(Day) + '/' + str(Year)
 
 				# Rank
 				if(row[0] is ''):
 					temp[keys[0]] = ''
 				else:
 					temp[keys[0]] = int(row[0])
+					total_rowers = int(row[0])
 
 				# Name
 				temp[keys[1]] = row[1]
@@ -59,13 +68,13 @@ def readRepMax(infile):
 					Average = float((int(Deadlift) + int(Squat)))/2
 				temp[keys[4]] = Average
 
-				temp['Test'] = 'Rep Max'
+				temp['Test'] = test_name
 				
 				RepMaxData.append(temp)
 			i += 1
-	writeRepMax(RepMaxData)
+	writeRepMax(RepMaxData, total_rowers)
 
-def writeRepMax(RepMaxData):
+def writeRepMax(RepMaxData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', 27017)
 	db = client['C150']
@@ -74,9 +83,14 @@ def writeRepMax(RepMaxData):
 
 	# Write to text file
 	textfilename = 'Rep Max.txt'
-	file_out = open(textfilename, 'w')
+
+	if not os.path.isdir('outputs'):
+ 		os.mkdir('outputs')
+
+	file_out = open('outputs/' + textfilename, 'w')
+
 	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
-					'Squat' + '\t' + '\t' + 'Deadlift' + '\t' + 'AvgSPM' + '\n')	
+					'Squat' + '\t' + '\t' + 'Deadlift' + '\t' + 'Average' + '\n')	
 	file_out.write('\n')
 
 	for i in range(0, len(RepMaxData)):
@@ -88,9 +102,13 @@ def writeRepMax(RepMaxData):
 					'Name': RepMaxData[i]['Name'], \
 					'Test': 'Rep Max'}
 			update = RepMaxData[i]
+			update['Rower Total'] = total_rowers
 			RepMax.update(query, update, True)
 
-	for rower in RepMax.find():
+	for rower in RepMax.find().sort([('Year', pymongo.ASCENDING), \
+									('Month', pymongo.ASCENDING), \
+									('Day', pymongo.ASCENDING), \
+									('Rank', pymongo.ASCENDING)] ):
 		# print rower
 		Month = str(rower['Month'])
 		Day = str(rower['Day'])

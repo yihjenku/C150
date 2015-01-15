@@ -1,10 +1,14 @@
 import csv
 import pymongo
 import datetime
+import os
 
-def readMaxWatt(infile):
+def translate(infile):
 	keys = []
 	MaxWattData = []
+	test_date = {}
+	test_name = 'Max Watt'
+	total_rowers = 0
 	with open(infile, 'rU') as f:
 		reader = csv.reader(f)
 		i = 0
@@ -18,18 +22,23 @@ def readMaxWatt(infile):
 				test_date = {'Day': date[1], 'Month': date[0], 'Year': date[2]}
 			elif i == 1:
 				keys = row
-				print keys
+				# print keys
 			else:
 				temp = {}
-				temp['Day'] = test_date['Day']
-				temp['Month'] = test_date['Month']
-				temp['Year'] = test_date['Year']
+				Day = test_date['Day']
+				Month = test_date['Month']
+				Year = test_date['Year']
+				temp['Day'] = Day
+				temp['Month'] = Month
+				temp['Year'] = Year
+				temp['Date'] = str(Month) + '/' + str(Day) + '/' + str(Year)
 
 				# Rank
 				if(row[0] is ''):
 					temp[keys[0]] = ''
 				else:
 					temp[keys[0]] = int(row[0])
+					total_rowers = int(row[0])
 
 				# Name
 				temp[keys[1]] = row[1]
@@ -62,13 +71,13 @@ def readMaxWatt(infile):
 				temp[keys[5]] = Max
 				temp[keys[6]] = Avg
 
-				temp['Test'] = 'Max Watt'
+				temp['Test'] = test_name
 				
 				MaxWattData.append(temp)
 			i += 1
-	writeMaxWatt(MaxWattData)
+	writeMaxWatt(MaxWattData, total_rowers)
 
-def writeMaxWatt(MaxWattData, outfile = 'Max Watt.txt', database = 'Max Watt'):
+def writeMaxWatt(MaxWattData, total_rowers, outfile = 'Max Watt.txt', database = 'Max Watt'):
 
 	client = pymongo.MongoClient('localhost', 27017)
 	db = client['C150']
@@ -76,7 +85,11 @@ def writeMaxWatt(MaxWattData, outfile = 'Max Watt.txt', database = 'Max Watt'):
 	MaxWatt = db[database]
 
 	# Write to text file
-	file_out = open(outfile, 'w')
+	if not os.path.isdir('outputs'):
+ 		os.mkdir('outputs')
+
+	file_out = open('outputs/' + outfile, 'w')
+
 	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
 					'1' + '\t' + '2' + '\t' + '3' + '\t' + 'Avg' + '\t' + 'High' + '\n')	
 	file_out.write('\n')
@@ -90,12 +103,13 @@ def writeMaxWatt(MaxWattData, outfile = 'Max Watt.txt', database = 'Max Watt'):
 					'Name': MaxWattData[i]['Name'], \
 					'Test': 'Max Watt'}
 			update = MaxWattData[i]
+			update['Rower Total'] = total_rowers
 			MaxWatt.update(query, update, True)
 
-	# for rower in MaxWatt.find().sort('Average', pymongo.ASCENDING):
-		# print(rower)
-
-	for rower in MaxWatt.find():
+	for rower in MaxWatt.find().sort(  [('Year', pymongo.ASCENDING), \
+										('Month', pymongo.ASCENDING), \
+										('Day', pymongo.ASCENDING), \
+										('Rank', pymongo.ASCENDING)] ):
 		# print rower
 		Month = str(rower['Month'])
 		Day = str(rower['Day'])

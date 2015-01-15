@@ -1,0 +1,59 @@
+{% extends 'search.html' %}
+
+{% block rower %}
+
+<style type="text/css">
+    td {
+        text-align: left;}
+    th {
+        text-align: left;}
+    table {
+        width: 700px;}
+    h1 {
+        font-family: Verdana, sans-serif;}
+    h2 {
+        text-align: center;}
+    h2.title{
+        color: #66CCFF;}
+    body {
+        font-family: Helvetica, sans-serif;}
+    tfoot { 
+        border-top-style: solid; border-top-color: #66CCFF; 
+        border-top-style: solid; border-bottom-color: #66CCFF;}
+</style>
+
+{% if data['items'] %}
+{% for entry in data['items'] %}
+    <h2 class='title'>
+        One Minute Test {{ entry['date'] }}
+    </h2>
+
+    <body> 
+    <table align=center> 
+        <thead>
+            <tr>
+                <th> Rank </th>
+                <th> Name </th>
+                <th> Avg Split </th>
+                <th> Avg Rate </th>
+                <th> Meters </th>
+                <th> Weight </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rower in entry['rowers'] %}
+            <tr>                
+                <td> {{ rower['Rank'] }} </td> 
+                <td> {{ rower['Name'] }} </td>
+                <td> {{ rower['Avg Split']['String'] }} </td>
+                <td> {{ rower['Avg SPM'] }} </td>
+                <td> {{ rower['Meters'] }} </td>              
+                <td> {{ rower['Weight'] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

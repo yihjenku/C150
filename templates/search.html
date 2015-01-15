@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>C150</title>
+    </head>
+    <body>
+        <div class=panel> 
+            <h1 align=center> C150 Database </h1>
+        </div>
+        <form align=center action="/search" method="post">
+            <input type="text" placeholder="Search by last name" name="user_search" required/>
+            <button type="submit">Search</button>
+        </form>
+        <p align=center> <a href='/results'> See all test results </a> </p>
+        {% block rower %}{% endblock %}
+        {% block results %}{% endblock %}
+    </body>
+</html>

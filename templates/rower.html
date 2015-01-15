@@ -1,0 +1,328 @@
+{% extends 'search.html' %}
+
+{% block rower %}
+
+{% if data['items'] %}
+    <h2>
+        {{ rower }}
+    </h2>
+
+    <body> 
+
+    <h2 class='title'>
+        Forty Minute Test Data
+    </h2>
+
+    {% if data['FM'] %}
+    {% for entry in data['FM'] %}
+    <table> <img src="{{ url_for('static', filename = 'FortyMinute/') }}{{rower}}{{ entry['index'] }}.svg" width = '810' height = '540'align="right"/>
+        <thead>
+            <tr>
+                <th class='header'> {{ entry['Date'] }} </th>
+                <th class='header'> {{ rower }} </th>
+                <th class='header'> Team </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class='delta'> 
+                <th> 4' </th>
+                <td class='right'> {{ entry['4']['String'] }} </td>  
+                <td> </td>              
+            </tr>
+            {% for interval in ['8', '12', '16', '20', '24', '28', '32', '36', '40'] %}
+            <tr>
+                <th> {{ interval }}' </th>
+                <td class='right'> {{ entry[interval]['String'] }} </td>
+            </tr>
+            <tr class='delta'>
+                <th> Delta </th>
+                    {% if entry['FortySplitChanges'][interval] %}
+                        <td class='right'> {{ entry['FortySplitChanges'][interval]['String'] }} </td>
+                        <td class='right'> {{ entry['40AvgSplitChange'][interval] }} </td>
+                    {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr> 
+                <th> Average Split </th>
+                <td class='right'> {{ entry['Avg Split']['String'] }} </td>
+                <td> </td>
+            </tr>
+            <tr class='delta'>
+                <th> Total Distance </th>
+                <td class='right'> <em> {{ entry['Meters'] }} </em> </td>   
+                <td> </td>             
+            </tr>
+            <tr> 
+                <th> Average Rate </th>
+                <td class='right'> {{ entry['Avg SPM'] }} </td>   
+                <td> </td>             
+            </tr>
+            <tr class='delta'> 
+                <th> Weight </th>
+                <td class='right'> {{ entry['Weight'] }} </td>  
+                <td> </td>              
+            </tr>
+            <tr> 
+                <th> Rank </th>
+                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total']}} </td>  
+                <td> </td>
+            </tr>
+            <tr> </tr>
+        </tfoot>
+    </table>
+    {% endfor %}
+    {% endif %}
+
+    <h2 class='title'>
+        Twenty Minute Test Data
+    </h2>
+
+    {% if data['TM'] %}
+    {% for entry in data['TM'] %}
+    <table> <img src="{{ url_for('static', filename = 'TwentyMinute/') }}{{rower}}{{ entry['index'] }}.svg" width = '810' height = '540'align="right"/>
+        <thead>
+            <tr>
+                <th class='header'> {{ entry['Date'] }} </th>
+                <th class='header'> {{ rower }} </th>
+                <th class='header'> Team </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class='delta'> 
+                <th> 2' </th>
+                <td class='right'> {{ entry['2']['String'] }} </td>   
+                <td> </td>             
+            </tr>
+            {% for interval in ['4', '6', '8', '10', '12', '14', '16', '18', '20'] %}
+            <tr>
+                <th> {{ interval }}' </th>
+                <td class='right'> {{ entry[interval]['String'] }} </td>
+                <td> </td>
+            </tr>
+            <tr class='delta'>
+                <th> Delta </th>
+                    {% if entry['TwentySplitChanges'][interval] %}
+                        <td class='right'> {{ entry['TwentySplitChanges'][interval]['String'] }} </td>
+                        <td class='right'> {{ entry['20AvgSplitChange'][interval] }} </td>
+                    {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr> 
+                <th> Average Split </th>
+                <td class='right'> {{ entry['Avg Split']['String'] }} </td>
+                <td> </td>
+            </tr>
+            <tr class='delta'>
+                <th> Total Distance </th>
+                <td class='right'> <em> {{ entry['Meters'] }} </em> </td> 
+                <td> </td>               
+            </tr>
+            <tr> 
+                <th> Average Rate </th>
+                <td class='right'> {{ entry['Avg SPM'] }} </td>  
+                <td> </td>              
+            </tr>
+            <tr class='delta'> 
+                <th> Weight </th>
+                <td class='right'> {{ entry['Weight'] }} </td>  
+                <td> </td>              
+            </tr>
+            <tr> 
+                <th> Rank </th>
+                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total']}} </td>    
+                <td> </td>            
+            </tr>
+            <tr> </tr>
+        </tfoot>
+    </table>
+    {% endfor %}
+    {% endif %}
+
+    <h2 class='title'> <img src="{{ url_for('static', filename = 'OlympicGraphs/') }}{{rower}}.svg" width = '810' height = '540'align="right"/> 
+        One Minute Test Data
+    </h2>
+
+    {% if data['OM'] %}
+    <table> 
+        <thead>
+            <tr>
+                <th class='header'> 1 Minute </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class='delta'> 
+                <th> Date </th>
+                    {% for entry in data['OM'] %}
+                        <td class='right'> {{ entry['Date'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr> 
+                <th> Average Split </th>
+                    {% for entry in data['OM'] %}
+                        <td class='right'> {{ entry['Avg Split']['String'] }} </td>                
+                    {% endfor %}
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class='delta'> 
+                <th> Total Distance </th>
+                    {% for entry in data['OM'] %}
+                        <td class='right'> <em> {{ entry['Meters'] }} </em> </td>                
+                    {% endfor %}
+            </tr>
+            <tr> 
+                <th> Average Rate </th>
+                    {% for entry in data['OM'] %}
+                        <td class='right'> {{ entry['Avg SPM'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr class='delta'> 
+                <th> Weight </th>
+                    {% for entry in data['OM'] %}
+                        <td class='right'> {{ entry['Weight'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr> 
+                <th> Rank </th>
+                    {% for entry in data['OM'] %}
+                        <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                    {% endfor %}
+            </tr>
+        </tfoot>
+    </table>
+    {% endif %}
+
+    <h2 class='title'>
+        Max Watt Test Data
+    </h2>
+
+    {% if data['MW'] %}
+    <table>
+        <thead>
+            <tr>
+                <th class='header'> Max Watt </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class='delta'> 
+                <th> Date </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> {{ entry['Date'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr> 
+                <th> Trial 1 </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> {{ entry['Watt 1'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr class='delta'> 
+                <th> Trial 2 </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> {{ entry['Watt 2'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr> 
+                <th> Trial 3 </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> {{ entry['Watt 3'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr class='delta'> 
+                <th> Average </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> {{ entry['Average'] }} </td>                
+                    {% endfor %}
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr> 
+                <th> High </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> <em> {{ entry['High'] }} </em> </td>                
+                    {% endfor %}
+            </tr>
+            <tr class='delta'> 
+                <th> Rank </th>
+                    {% for entry in data['MW'] %}
+                        <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                    {% endfor %}
+
+            </tr>
+        </tfoot>
+    </table>
+    {% endif %}
+
+    <h2 class='title'>
+        1 Rep Max Test Data
+    </h2>
+
+    {% if data['RM'] %}
+    <table> 
+        <thead>
+            <tr>
+                <th class='header'> Rep Max </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class='delta'> 
+                <th> Date </th>
+                    {% for entry in data['RM'] %}
+                        <td class='right'> {{ entry['Date'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr> 
+                <th> Squat </th>
+                    {% for entry in data['RM'] %}
+                        {% if entry['Squat'] %}
+                            <td class='right'> <em> {{ entry['Squat'] }} </em> </td> 
+                        {% else %}
+                            <td class='right'> N/A </td> 
+                        {% endif %}              
+                    {% endfor %}
+            </tr>
+            <tr class='delta'> 
+                <th> Deadlift </th>
+                    {% for entry in data['RM'] %}
+                        {% if entry['Squat'] %}
+                            <td class='right'> <em> {{ entry['Deadlift'] }} </em> </td> 
+                        {% else %}
+                            <td class='right'> N/A </td> 
+                        {% endif %}                          
+                    {% endfor %}
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr> 
+                <th> Average </th>
+                    {% for entry in data['RM'] %}
+                        <td class='right'> {{ entry['Average'] }} </td>                
+                    {% endfor %}
+            </tr>
+            <tr class='delta'> 
+                <th> Rank </th>
+                    {% for entry in data['RM'] %}
+                        <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                    {% endfor %}
+
+            </tr>
+        </tfoot>
+    </table>
+    {% endif %}
+    </body>
+
+{% else %}
+<p>There are no results found.</p>
+{% endif %}
+
+{% endblock %}

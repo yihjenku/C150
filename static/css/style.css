@@ -1,0 +1,34 @@
+td {
+    text-align: left;}
+td.right{
+    text-align: right;}
+tr.delta{
+    text-align: right;
+    background-color: #a6e1ff;}
+th {
+    text-align: left;}
+th.header{
+    text-align: center;
+    color: #003399;
+    font-size: 120%;}
+table {
+    width: 300px;}
+table.maxwatt {;
+    width: 700px;}
+table.fortymin {;
+    width: 1200px;}
+h1 {
+    font-family: Verdana, sans-serif;
+    color: #66CCFF;}
+h2{
+    text-align: center;}
+h2.title{
+    color: #66CCFF;}
+h3 {
+    text-align: center;
+    color: #66CCFF;}
+body {
+    font-family: Helvetica, sans-serif;}
+tfoot { 
+    border-top-style: solid; border-top-color: #66CCFF; 
+    border-top-style: solid; border-bottom-color: #66CCFF;}
