@@ -5,22 +5,22 @@ from translators import search as s, Graphics as g
 app = Flask(__name__)
 app.config['DEBUG'] = True  # Disable this for deployment
 
-@app.route('/search', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def search():
     if request.method == 'POST':
-        
+
         maxwatt = []
         fortymin = []
         onemin = []
         twentymin = []
         repmax = []
-        
+
         Tests = {'Max Watt': maxwatt, 'Twenty Minute': twentymin, 'One Minute': onemin, \
             'Forty Minute': fortymin, 'Rep Max': repmax}
-        
+
         name = request.form['user_search'].lower().title()
         rower_data = s.searchRower(name)
-        if rower_data['items']: 
+        if rower_data['items']:
             g.graphOlympic(name)
             g.graphSplitChanges(name)
 
@@ -32,15 +32,15 @@ def search():
                     mod.sort(key=lambda k: k['Month'])
                     mod.sort(key=lambda k: k['Day'])
 
-        rower_data['MW'] = maxwatt 
+        rower_data['MW'] = maxwatt
         rower_data['FM'] = fortymin
         rower_data['OM'] = onemin
         rower_data['TM'] = twentymin
         rower_data['RM'] = repmax
-        
+
 
         return render_template('rower.html', data = rower_data, rower = name)
-    
+
     else: # request.method == 'GET'
         return render_template('search.html')
 
