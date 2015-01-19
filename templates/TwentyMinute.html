@@ -2,26 +2,6 @@
 
 {% block rower %}
 
-<style type="text/css">
-    td {
-        text-align: left;}
-    th {
-        text-align: left;}
-    table {
-        width: 1200px;}
-    h1 {
-        font-family: Verdana, sans-serif;}
-    h2 {
-        text-align: center;}
-    h2.title{
-        color: #66CCFF;}
-    body {
-        font-family: Helvetica, sans-serif;}
-    tfoot { 
-        border-top-style: solid; border-top-color: #66CCFF; 
-        border-top-style: solid; border-bottom-color: #66CCFF;}
-</style>
-
 {% if data['items'] %}
 {% for entry in data['items'] %}
     <h2 class='title'>
@@ -29,46 +9,46 @@
     </h2>
 
     <body> 
-    <table align=center> 
+    <table class='table-1'> 
         <thead>
             <tr>
-                <th> Rank </th>
-                <th> Name </th>
-                <th> 2' </th>
-                <th> 4' </th>
-                <th> 6' </th>
-                <th> 8' </th>
-                <th> 10' </th>
-                <th> 12' </th>
-                <th> 14' </th>
-                <th> 16' </th>
-                <th> 18' </th>
-                <th> 20' </th>
-                <th> Avg Split </th>
-                <th> Avg Rate </th>
-                <th> Meters </th>
-                <th> Weight </th>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header'> 2' </th>
+                <th class='header'> 4' </th>
+                <th class='header'> 6' </th>
+                <th class='header'> 8' </th>
+                <th class='header'> 10' </th>
+                <th class='header'> 12' </th>
+                <th class='header'> 14' </th>
+                <th class='header'> 16' </th>
+                <th class='header'> 18' </th>
+                <th class='header'> 20' </th>
+                <th class='header'> Avg Split </th>
+                <th class='header'> Avg Rate </th>
+                <th class='header'> Meters </th>
+                <th class='header'> Weight </th>
             </tr>
         </thead>
         <tbody>
             {% for rower in entry['rowers'] %}
             <tr>                
-                <td> {{ rower['Rank'] }} </td> 
-                <td> {{ rower['Name'] }} </td>
-                <td> {{ rower['2']['String'] }} </td>
-                <td> {{ rower['4']['String'] }} </td>
-                <td> {{ rower['6']['String'] }} </td>              
-                <td> {{ rower['8']['String'] }} </td>
-                <td> {{ rower['10']['String'] }} </td>
-                <td> {{ rower['12']['String'] }} </td>
-                <td> {{ rower['14']['String'] }} </td>
-                <td> {{ rower['16']['String'] }} </td>
-                <td> {{ rower['18']['String'] }} </td>
-                <td> {{ rower['20']['String'] }} </td>
-                <td> {{ rower['Avg Split']['String'] }} </td>
-                <td> {{ rower['Avg SPM'] }} </td>
-                <td> {{ rower['Meters'] }} </td>
-                <td> {{ rower['Weight'] }} </td>
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result'> {{ rower['2']['String'] }} </td>
+                <td class='result'> {{ rower['4']['String'] }} </td>
+                <td class='result'> {{ rower['6']['String'] }} </td>              
+                <td class='result'> {{ rower['8']['String'] }} </td>
+                <td class='result'> {{ rower['10']['String'] }} </td>
+                <td class='result'> {{ rower['12']['String'] }} </td>
+                <td class='result'> {{ rower['14']['String'] }} </td>
+                <td class='result'> {{ rower['16']['String'] }} </td>
+                <td class='result'> {{ rower['18']['String'] }} </td>
+                <td class='result'> {{ rower['20']['String'] }} </td>
+                <td class='result'> {{ rower['Avg Split']['String'] }} </td>
+                <td class='result'> {{ rower['Avg SPM'] }} </td>
+                <td class='result'> {{ rower['Meters'] }} </td>
+                <td class='result'> {{ rower['Weight'] }} </td>
             </tr>
             {% endfor %}
         </tbody>

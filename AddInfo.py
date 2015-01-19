@@ -1,5 +1,4 @@
-add_info = {
-	{'First': 'Frederik',
+add_info = {'items': [{'First': 'Frederik',
 	'Last': 'Aasaaren',
 	'School': 'CC',
 	'Year': '2015',
@@ -213,5 +212,4 @@ add_info = {
 	'Last': 'Xu',
 	'School': 'CC',
 	'Year': '2015',
-	'Side': 'Port/Starboard'},
-}
+	'Side': 'Port/Starboard'}]}

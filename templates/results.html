@@ -1,10 +1,14 @@
 {% extends "search.html" %}
 {% block results %}
 
-<p> <a href='/results/FortyMinute'> Forty Minute Results </a> </p>
-<p> <a href='/results/MaxWatt'> Max Wattage Results </a> </p>
-<p> <a href='/results/OneMinute'> One Minute Results </a> </p>
-<p> <a href='/results/RepMax'> 1 Rep Max Results </a> </p>
-<p> <a href='/results/TwentyMinute'> Twenty Minute Results </a> </p>
+<div class='results-list'>
+	<ul>
+		<li> <p> <a href='/results/FortyMinute'> Forty Minute Results </a> </p> </li>
+		<li> <p> <a href='/results/MaxWatt'> Max Wattage Results </a> </p> </li>
+		<li> <p> <a href='/results/OneMinute'> One Minute Results </a> </p> </li>
+		<li> <p> <a href='/results/RepMax'> 1 Rep Max Results </a> </p> </li>
+		<li> <p> <a href='/results/TwentyMinute'> Twenty Minute Results </a> </p> </li>
+	</ul>
+</div>
 
 {% endblock %}

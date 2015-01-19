@@ -5,17 +5,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <title>C150</title>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+        <title> C150 </title>
     </head>
     <body>
         <div class=panel>
-            <h1 align=center> C150 Database </h1>
+            <h1 id='title'> <a href='http://c150.yihjen.com' id='title'> C150 Database </a> </h1>
         </div>
         <form align=center action="{{ url_for('search') }}" method="post">
             <input type="text" placeholder="Search by last name" name="user_search" required/>
-            <button type="submit">Search</button>
+            <button type="submit"> Search </button>
         </form>
-        <p align=center> <a href='/results'> See all test results </a> </p>
+        <p class='results'> <a href='/results'> See all test results </a> </p>
         {% block rower %}{% endblock %}
         {% block results %}{% endblock %}
     </body>

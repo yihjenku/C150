@@ -2,26 +2,6 @@
 
 {% block rower %}
 
-<style type="text/css">
-    td {
-        text-align: left;}
-    th {
-        text-align: left;}
-    table {
-        width: 700px;}
-    h1 {
-        font-family: Verdana, sans-serif;}
-    h2 {
-        text-align: center;}
-    h2.title{
-        color: #66CCFF;}
-    body {
-        font-family: Helvetica, sans-serif;}
-    tfoot { 
-        border-top-style: solid; border-top-color: #66CCFF; 
-        border-top-style: solid; border-bottom-color: #66CCFF;}
-</style>
-
 {% if data['items'] %}
 {% for entry in data['items'] %}
     <h2 class='title'>
@@ -29,28 +9,28 @@
     </h2>
 
     <body> 
-    <table align=center> 
+    <table class='table-2'> 
         <thead>
             <tr>
-                <th> Rank </th>
-                <th> Name </th>
-                <th> Watt 1 </th>
-                <th> Watt 2 </th>
-                <th> Watt 3 </th>
-                <th> Average </th>
-                <th> High </th>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header-left'> Watt 1 </th>
+                <th class='header-left'> Watt 2 </th>
+                <th class='header-left'> Watt 3 </th>
+                <th class='header-left'> Average </th>
+                <th class='header-left'> High </th>
             </tr>
         </thead>
         <tbody>
             {% for rower in entry['rowers'] %}
             <tr>                
-                <td> {{ rower['Rank'] }} </td> 
-                <td> {{ rower['Name'] }} </td>
-                <td> {{ rower['Watt 1'] }} </td>
-                <td> {{ rower['Watt 2'] }} </td>              
-                <td> {{ rower['Watt 3'] }} </td>
-                <td> {{ rower['Average'] }} </td>
-                <td> {{ rower['High'] }} </td>
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result-left'> {{ rower['Watt 1'] }} </td>
+                <td class='result-left'> {{ rower['Watt 2'] }} </td>              
+                <td class='result-left'> {{ rower['Watt 3'] }} </td>
+                <td class='result-left'> {{ rower['Average'] }} </td>
+                <td class='result-left'> {{ rower['High'] }} </td>
             </tr>
             {% endfor %}
         </tbody>

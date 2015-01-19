@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 from translators import search as s, Graphics as g
+from AddInfo import add_info
 
 app = Flask(__name__)
 app.config['DEBUG'] = True  # Disable this for deployment
@@ -31,6 +32,13 @@ def search():
                     mod.sort(key=lambda k: k['Year'])
                     mod.sort(key=lambda k: k['Month'])
                     mod.sort(key=lambda k: k['Day'])
+
+        for member in add_info['items']:
+            if name == member['Last']:
+                rower_data['First'] = member['First']
+                rower_data['School'] = member['School']
+                rower_data['Year'] = member['Year']
+                rower_data['Side'] = member['Side']
 
         rower_data['MW'] = maxwatt
         rower_data['FM'] = fortymin

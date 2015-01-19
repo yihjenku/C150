@@ -2,26 +2,6 @@
 
 {% block rower %}
 
-<style type="text/css">
-    td {
-        text-align: left;}
-    th {
-        text-align: left;}
-    table {
-        width: 700px;}
-    h1 {
-        font-family: Verdana, sans-serif;}
-    h2 {
-        text-align: center;}
-    h2.title{
-        color: #66CCFF;}
-    body {
-        font-family: Helvetica, sans-serif;}
-    tfoot { 
-        border-top-style: solid; border-top-color: #66CCFF; 
-        border-top-style: solid; border-bottom-color: #66CCFF;}
-</style>
-
 {% if data['items'] %}
 {% for entry in data['items'] %}
     <h2 class='title'>
@@ -29,26 +9,26 @@
     </h2>
 
     <body> 
-    <table align=center> 
+    <table class='table-2'> 
         <thead>
             <tr>
-                <th> Rank </th>
-                <th> Name </th>
-                <th> Avg Split </th>
-                <th> Avg Rate </th>
-                <th> Meters </th>
-                <th> Weight </th>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header'> Avg Split </th>
+                <th class='header'> Avg Rate </th>
+                <th class='header'> Meters </th>
+                <th class='header'> Weight </th>
             </tr>
         </thead>
         <tbody>
             {% for rower in entry['rowers'] %}
             <tr>                
-                <td> {{ rower['Rank'] }} </td> 
-                <td> {{ rower['Name'] }} </td>
-                <td> {{ rower['Avg Split']['String'] }} </td>
-                <td> {{ rower['Avg SPM'] }} </td>
-                <td> {{ rower['Meters'] }} </td>              
-                <td> {{ rower['Weight'] }} </td>
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result'> {{ rower['Avg Split']['String'] }} </td>
+                <td class='result'> {{ rower['Avg SPM'] }} </td>
+                <td class='result'> {{ rower['Meters'] }} </td>              
+                <td class='result'> {{ rower['Weight'] }} </td>
             </tr>
             {% endfor %}
         </tbody>
