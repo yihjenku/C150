@@ -4,3 +4,5 @@
 *.csv
 *.DS_Store
 *.png
+!requirements.txt
+include
