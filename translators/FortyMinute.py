@@ -3,6 +3,7 @@ import pymongo
 import datetime
 import os
 import TwentyMinute as tm
+from config import MONGO_PORT
 
 def translate(infile):
 	keys = []
@@ -38,7 +39,7 @@ def translate(infile):
 				temp['Month'] = Month
 				temp['Year'] = Year
 				temp['Date'] = str(Month) + '/' + str(Day) + '/' + str(Year)
-				
+
 				if(row[0] is ''):
 					Rank = ''
 				else:
@@ -62,7 +63,7 @@ def translate(infile):
 						Split = Split.split()
 						for j in range(3):
 							Split[j] = int(Split[j])
-						Test_Split = {'Minute': Split[0], 'Second': Split[1], 
+						Test_Split = {'Minute': Split[0], 'Second': Split[1],
 										'Millisecond': Split[2], 'String': Split_String}
 						Splits.append(Test_Split)
 					temp[keys[k]] = Test_Split
@@ -78,7 +79,7 @@ def translate(infile):
 						c = split_change_ave[key]
 						d = split_change_count[key]
 						split_change_ave[key] = (c*b + a)/d
-				
+
 				if(row[13] is ''):
 					AvgSPM = ''
 				else:
@@ -107,7 +108,7 @@ def translate(infile):
 
 def writeFortyMinute(FortyMinData, total_rowers, split_change_ave):
 
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	# db.drop_collection('Forty Minute')
 	FortyMinute = db['Forty Minute']
@@ -127,11 +128,11 @@ def writeFortyMinute(FortyMinData, total_rowers, split_change_ave):
 
 	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
 					Keys_String + \
-					'Avg Split' + '\t' + 'AvgSPM' + '\t' + 'Meters' + '\t' + 'Weight' + '\n')	
+					'Avg Split' + '\t' + 'AvgSPM' + '\t' + 'Meters' + '\t' + 'Weight' + '\n')
 	file_out.write('\n')
 
 	for i in range(0, len(FortyMinData)):
-		
+
 		if FortyMinData[i]:
 			query = {'Day': FortyMinData[i]['Day'], \
 					'Month': FortyMinData[i]['Month'], \

@@ -1,10 +1,11 @@
 import pygal
 import pymongo
 import search as s
+from config import MONGO_PORT
 
 def graphOlympic(name):
 
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	s.search(name)
 	RowerDB = db[name]
@@ -16,7 +17,7 @@ def graphOlympic(name):
 						.sort( [('Year', pymongo.ASCENDING), \
 								('Month', pymongo.ASCENDING), \
 								('Rank', pymongo.ASCENDING)] ):
-		
+
 		if (isinstance(rower['Meters'], basestring)):
 			FortyMinuteData.append(0)
 		else:
@@ -82,7 +83,7 @@ def weightCalc(weightdata):
 	for entry in weightdata:
 		sum += entry
 	if not (sum == 0):
-		weight = round(float(sum/len(weightdata)), 2)	
+		weight = round(float(sum/len(weightdata)), 2)
 	# print ('%.1f' % weight)
 	return weight
 

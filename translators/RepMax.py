@@ -2,6 +2,7 @@ import csv
 import pymongo
 import datetime
 import os
+from config import MONGO_PORT
 
 def translate(infile):
 	keys = []
@@ -69,14 +70,14 @@ def translate(infile):
 				temp[keys[4]] = Average
 
 				temp['Test'] = test_name
-				
+
 				RepMaxData.append(temp)
 			i += 1
 	writeRepMax(RepMaxData, total_rowers)
 
 def writeRepMax(RepMaxData, total_rowers):
 
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	# db.drop_collection('Rep Max')
 	RepMax = db['Rep Max']
@@ -90,11 +91,11 @@ def writeRepMax(RepMaxData, total_rowers):
 	file_out = open('outputs/' + textfilename, 'w')
 
 	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
-					'Squat' + '\t' + '\t' + 'Deadlift' + '\t' + 'Average' + '\n')	
+					'Squat' + '\t' + '\t' + 'Deadlift' + '\t' + 'Average' + '\n')
 	file_out.write('\n')
 
 	for i in range(0, len(RepMaxData)):
-		
+
 		if RepMaxData[i]:
 			query = {'Day': RepMaxData[i]['Day'], \
 					'Month': RepMaxData[i]['Month'], \

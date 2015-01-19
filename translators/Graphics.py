@@ -3,10 +3,11 @@ from pygal.style import BlueStyle, LightenStyle
 import pymongo
 import search as s
 import os
+from config import MONGO_PORT
 
 def graphOlympic(name):
 
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	s.searchRower(name)
 	RowerDB = db[name]
@@ -18,7 +19,7 @@ def graphOlympic(name):
 						.sort( [('Year', pymongo.ASCENDING), \
 								('Month', pymongo.ASCENDING), \
 								('Rank', pymongo.ASCENDING)] ):
-		
+
 		if (isinstance(rower['Meters'], basestring)):
 			FortyMinuteData.append(0)
 		else:
@@ -84,7 +85,7 @@ def weightCalc(weightdata):
 	for entry in weightdata:
 		sum += entry
 	if not (sum == 0):
-		weight = round(float(sum/len(weightdata)), 2)	
+		weight = round(float(sum/len(weightdata)), 2)
 	# print ('%.1f' % weight)
 	return weight
 
@@ -118,7 +119,7 @@ def plotRadar(Name, Weight, FMData, OMData, RMData, MWData):
 	radar_chart.render_to_file('static/OlympicGraphs/' + Name + '.svg')
 
 def graphSplitChanges(name):
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	s.searchRower(name)
 	RowerDB = db[name]
@@ -137,7 +138,7 @@ def graphSplitChanges(name):
 				FortyMinRowerData.append(float(rower['FortySplitChanges'][key]['String']))
 			FortyMinTeamData.append(rower['40AvgSplitChange'][key])
 		plotLinear(name, FortyMinRowerData, FortyMinTeamData, 'Forty Minute', rower['index'])
-	
+
 	for rower in RowerDB.find({'Test': 'Twenty Minute'}) \
 						.sort( [('Year', pymongo.ASCENDING), \
 								('Month', pymongo.ASCENDING), \
@@ -152,7 +153,7 @@ def graphSplitChanges(name):
 				TwentyMinRowerData.append(float(rower['TwentySplitChanges'][key]['String']))
 			TwentyMinTeamData.append(rower['20AvgSplitChange'][key])
 		plotLinear(name, TwentyMinRowerData, TwentyMinTeamData, 'Twenty Minute', rower['index'])
-		
+
 
 def plotLinear(Name, RowerData, TeamData, TestType, TestNumber):
 	dark_lighten_style = LightenStyle('#66CCFF', step = 5)

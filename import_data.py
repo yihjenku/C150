@@ -1,4 +1,4 @@
-import csv 
+import csv
 import sys
 from os import listdir
 from os.path import isfile, join
@@ -10,11 +10,11 @@ def main(args):
 	translators = {'MaxWatt': MaxWatt, 'RepMax': RepMax, 'OneMinute': OneMinute, \
 					'TwentyMinute': TwentyMinute, 'FortyMinute': FortyMinute}
 
-	# Find all rowing data files 
+	# Find all rowing data files
 	mypath = 'raw_data/'
 	onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
-	
-	# Match the correct translator with the file and 
+
+	# Match the correct translator with the file and
 	for csv_filename in onlyfiles:
 		for prefix, mod in translators.iteritems():
 			if csv_filename.startswith(prefix):

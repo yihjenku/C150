@@ -2,6 +2,7 @@ import csv
 import pymongo
 import datetime
 import os
+from config import MONGO_PORT
 
 def translate(infile):
 	keys = []
@@ -72,14 +73,14 @@ def translate(infile):
 				temp[keys[6]] = Avg
 
 				temp['Test'] = test_name
-				
+
 				MaxWattData.append(temp)
 			i += 1
 	writeMaxWatt(MaxWattData, total_rowers)
 
 def writeMaxWatt(MaxWattData, total_rowers, outfile = 'Max Watt.txt', database = 'Max Watt'):
 
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	# db.drop_collection('Max Watt')
 	MaxWatt = db[database]
@@ -91,11 +92,11 @@ def writeMaxWatt(MaxWattData, total_rowers, outfile = 'Max Watt.txt', database =
 	file_out = open('outputs/' + outfile, 'w')
 
 	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
-					'1' + '\t' + '2' + '\t' + '3' + '\t' + 'Avg' + '\t' + 'High' + '\n')	
+					'1' + '\t' + '2' + '\t' + '3' + '\t' + 'Avg' + '\t' + 'High' + '\n')
 	file_out.write('\n')
 
 	for i in range(0, len(MaxWattData)):
-		
+
 		if MaxWattData[i]:
 			query = {'Day': MaxWattData[i]['Day'], \
 					'Month': MaxWattData[i]['Month'], \
@@ -142,6 +143,6 @@ def writeMaxWatt(MaxWattData, total_rowers, outfile = 'Max Watt.txt', database =
 						Trial2 + '\t' + Trial3 + '\t' + Avg + '\t' + Max + '\n'
 		file_out.write(line)
 
-	file_out.close()		
+	file_out.close()
 	client.close()
 

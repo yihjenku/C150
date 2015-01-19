@@ -1,13 +1,14 @@
 import pymongo
+from config import MONGO_PORT
 
 def searchRower(name):
-	
-	client = pymongo.MongoClient('localhost', 27017)
+
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	db.drop_collection(name)
 	RowerDB = db[name]
 	RowerData = []
-	
+
 	Tests = ['Max Watt', 'Twenty Minute', 'One Minute', 'Forty Minute', 'Rep Max']
 
 	# Put all test items specific to one rower into a new collection
@@ -36,7 +37,7 @@ def searchRower(name):
 	client.close()
 
 def searchTest(test):
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	RowerDB = db[test]
 	RowerData = []

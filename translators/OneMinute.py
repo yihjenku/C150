@@ -2,6 +2,7 @@ import csv
 import pymongo
 import datetime
 import os
+from config import MONGO_PORT
 
 def translate(infile):
 	keys = []
@@ -53,7 +54,7 @@ def translate(infile):
 					AvgSplit = AvgSplit.split()
 					for j in range(3):
 						AvgSplit[j] = int(AvgSplit[j])
-					Test_AvgSplit = {'Minute': AvgSplit[0], 'Second': AvgSplit[1], 
+					Test_AvgSplit = {'Minute': AvgSplit[0], 'Second': AvgSplit[1],
 									'Millisecond': AvgSplit[2], 'String': Split_String}
 				temp[keys[2]] = Test_AvgSplit
 
@@ -61,7 +62,7 @@ def translate(infile):
 					Meters = ''
 				else:
 					Meters = int(row[3])
-				temp[keys[3]] = Meters	
+				temp[keys[3]] = Meters
 
 				if(row[4] is ''):
 					AvgSPM = ''
@@ -83,7 +84,7 @@ def translate(infile):
 
 def writeOneMinute(OneMinData, total_rowers):
 
-	client = pymongo.MongoClient('localhost', 27017)
+	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	# db.drop_collection('One Minute')
 	OneMinute = db['One Minute']
@@ -97,11 +98,11 @@ def writeOneMinute(OneMinData, total_rowers):
 	file_out = open('outputs/' + textfilename, 'w')
 
 	file_out.write('Date' + '\t' + '\t' + 'Rank' + '\t' + 'Name' + '\t' + '\t' + \
-					'Avg Split' + '\t' + 'Meters' + '\t' + 'AvgSPM' + '\t' + 'Weight' + '\n')	
+					'Avg Split' + '\t' + 'Meters' + '\t' + 'AvgSPM' + '\t' + 'Weight' + '\n')
 	file_out.write('\n')
 
 	for i in range(0, len(OneMinData)):
-		
+
 		if OneMinData[i]:
 			query = {'Day': OneMinData[i]['Day'], \
 					'Month': OneMinData[i]['Month'], \
