@@ -4,9 +4,9 @@
 
 {% if data['items'] %}
 <div class='Rower-Info'>
-    <h1 class='rower'>
+    <h2 class='rower'>
         {{ data['First'] }} {{ rower }} 
-    </h1>
+    </h2>
     <p> <span class='category'> School: </span> <span> {{ data['School']}} {{ data['Year'] }} </span> <span class='category'> Side: </span> <span> {{ data['Side'] }} </p>
 </div>
 
@@ -79,7 +79,7 @@
             </table>
         </div>
         <div class='chart'>
-            <img src="{{ url_for('static', filename = 'FortyMinute/') }}{{rower}}{{ entry['index'] }}.svg" width = '810' height = '540'align="right"/>
+            <img src="{{ url_for('static', filename = 'FortyMinute/') }}{{rower}}{{ entry['index'] }}.svg"/>
         </div>
     </div>
     {% endfor %}
@@ -154,7 +154,7 @@
             </table>
         </div>
         <div class='chart'>
-            <img src="{{ url_for('static', filename = 'TwentyMinute/') }}{{rower}}{{ entry['index'] }}.svg" width = '810' height = '540'align="right"/>
+            <img src="{{ url_for('static', filename = 'TwentyMinute/') }}{{rower}}{{ entry['index'] }}.svg"/>
         </div>
     </div>
     {% endfor %}
@@ -333,7 +333,7 @@
             {% endif %}
         </div>
         <div class='chart'>
-            <img src="{{ url_for('static', filename = 'OlympicGraphs/') }}{{rower}}.svg" width = '810' height = '540'align="right"/>
+            <img src="{{ url_for('static', filename = 'OlympicGraphs/') }}{{rower}}.svg"/>
         </div>
     </div>
 </body>
