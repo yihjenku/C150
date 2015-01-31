@@ -1,0 +1,173 @@
+{% extends 'search.html' %}
+
+{% block rower %}
+
+{% if data['4x5Min'] %}
+{% for entry in data['4x5Min'] %}
+    <h2 class='title'>
+        4 x 5 Minute {{ entry['date'] }}
+    </h2>
+
+    <body> 
+    <table class='table-2'> 
+        <thead>
+            <tr>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+                <th class='header'> 3 </th>
+                <th class='header'> 4 </th>
+                <th class='header'> Average </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rower in entry['rowers'] %}
+            <tr>                
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result'> {{ rower['1']['String'] }} </td>
+                <td class='result'> {{ rower['2']['String'] }} </td>
+                <td class='result'> {{ rower['3']['String'] }} </td>              
+                <td class='result'> {{ rower['4']['String'] }} </td>
+                <td class='result'> {{ rower['Average']['String'] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+
+{% if data['5x5Min'] %}
+{% for entry in data['5x5Min'] %}
+    <h2 class='title'>
+        5 x 5 Minute {{ entry['date'] }}
+    </h2>
+
+    <body> 
+    <table class='table-2'> 
+        <thead>
+            <tr>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+                <th class='header'> 3 </th>
+                <th class='header'> 4 </th>
+                <th class='header'> 5 </th>
+                <th class='header'> Average </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rower in entry['rowers'] %}
+            <tr>                
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result'> {{ rower['1']['String'] }} </td>
+                <td class='result'> {{ rower['2']['String'] }} </td>
+                <td class='result'> {{ rower['3']['String'] }} </td>              
+                <td class='result'> {{ rower['4']['String'] }} </td>
+                <td class='result'> {{ rower['5']['String'] }} </td>
+                <td class='result'> {{ rower['Average']['String'] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+
+{% if data['3x3x90Sec'] %}
+{% for entry in data['3x3x90Sec'] %}
+    <h2 class='title'>
+        3 x 3 x 90 Second {{ entry['date'] }}
+    </h2>
+
+    <body> 
+    <table class='table-1'> 
+        <thead>
+            <tr>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+                <th class='header'> 3 </th>
+                <th class='header'> 4 </th>
+                <th class='header'> 5 </th>
+                <th class='header'> 6 </th>
+                <th class='header'> 7 </th>
+                <th class='header'> 8 </th>
+                <th class='header'> 9 </th>
+                <th class='header'> Average </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rower in entry['rowers'] %}
+            <tr>                
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result'> {{ rower['1']['String'] }} </td>
+                <td class='result'> {{ rower['2']['String'] }} </td>
+                <td class='result'> {{ rower['3']['String'] }} </td>              
+                <td class='result'> {{ rower['4']['String'] }} </td>
+                <td class='result'> {{ rower['5']['String'] }} </td>
+                <td class='result'> {{ rower['6']['String'] }} </td>
+                <td class='result'> {{ rower['7']['String'] }} </td>
+                <td class='result'> {{ rower['8']['String'] }} </td>
+                <td class='result'> {{ rower['9']['String'] }} </td>
+                <td class='result'> {{ rower['Average']['String'] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+
+{% if data['3x3x2Min'] %}
+{% for entry in data['3x3x2Min'] %}
+    <h2 class='title'>
+        3 x 3 x 2 Minute {{ entry['date'] }}
+    </h2>
+
+    <body> 
+    <table class='table-1'> 
+        <thead>
+            <tr>
+                <th class='header-left'> Rank </th>
+                <th class='header-left'> Name </th>
+                <th class='header'> 1 </th>
+                <th class='header'> 2 </th>
+                <th class='header'> 3 </th>
+                <th class='header'> 4 </th>
+                <th class='header'> 5 </th>
+                <th class='header'> 6 </th>
+                <th class='header'> 7 </th>
+                <th class='header'> 8 </th>
+                <th class='header'> 9 </th>
+                <th class='header'> Average </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rower in entry['rowers'] %}
+            <tr>                
+                <td class='result-left'> {{ rower['Rank'] }} </td> 
+                <td class='result-left'> {{ rower['Name'] }} </td>
+                <td class='result'> {{ rower['1']['String'] }} </td>
+                <td class='result'> {{ rower['2']['String'] }} </td>
+                <td class='result'> {{ rower['3']['String'] }} </td>              
+                <td class='result'> {{ rower['4']['String'] }} </td>
+                <td class='result'> {{ rower['5']['String'] }} </td>
+                <td class='result'> {{ rower['6']['String'] }} </td>
+                <td class='result'> {{ rower['7']['String'] }} </td>
+                <td class='result'> {{ rower['8']['String'] }} </td>
+                <td class='result'> {{ rower['9']['String'] }} </td>
+                <td class='result'> {{ rower['Average']['String'] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

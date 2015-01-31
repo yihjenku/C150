@@ -12,6 +12,9 @@
 
 
 <body> 
+    <h2 class='section-header'>
+        Test Pieces
+    </h2>
     <h2 class='title'>
         Forty Minute Test Data
     </h2>
@@ -336,6 +339,547 @@
             <img src="{{ url_for('static', filename = 'OlympicGraphs/') }}{{rower}}.svg"/>
         </div>
     </div>
+
+    <h2 class='section-header'>
+        Team Workouts
+    </h2>
+
+    <h2 class='title'>
+        Anaerobic Threshold 1 Pieces
+    </h2>
+    <div class='table-group'>
+        <div class='table'>
+            {% if data['4x5Min'] %}
+            <table> 
+                <thead>
+                    <tr>
+                        <th class='header'> 4 x 5' </th>
+                        <th class='header'> 1 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='delta'> 
+                        <th> Date </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> {{ entry['Date'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 1 </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> {{ entry['1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 2 </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> {{ entry['2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 3 </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> {{ entry['3']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 4 </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> {{ entry['4']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr>
+                        <th> - </th>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class='delta'> 
+                        <th> Average Split </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> <em> {{ entry['Average']['String'] }} </em> </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr>
+                        <th> Weight </th>
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Rank </th>
+                            {% for entry in data['4x5Min'] %}
+                                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+        <div class='table'>
+            {% if data['5x5Min'] %}
+            <table> 
+                <thead>
+                    <tr>
+                        <th class='header'> 5 x 5' </th>
+                        <th class='header'> 1 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='delta'> 
+                        <th> Date </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['Date'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 1 </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 2 </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 3 </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['3']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 4 </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['4']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 5 </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['5']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class='delta'> 
+                        <th> Average Split </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> <em> {{ entry['Average']['String'] }} </em> </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> Weight </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['Weight'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Rank </th>
+                            {% for entry in data['5x5Min'] %}
+                                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+    <div class='table-group'>
+        <div class='table'>
+            {% if data['3x3x90Sec'] %}
+            <table> 
+                <thead>
+                    <tr>
+                        <th class='header'> 3 x 3 x 90" </th>
+                        <th class='header'> 1 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='delta'> 
+                        <th> Date </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['Date'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 1 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 2 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 3 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['3']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 4 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['4']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 5 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['5']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 6 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['6']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 7 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['7']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 8 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['8']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 9 </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['9']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class='delta'> 
+                        <th> Average Split </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> <em> {{ entry['Average']['String'] }} </em> </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr > 
+                        <th> Rank </th>
+                            {% for entry in data['3x3x90Sec'] %}
+                                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+        <div class='table'>
+            {% if data['3x3x2Min'] %}
+            <table> 
+                <thead>
+                    <tr>
+                        <th class='header'> 3 x 3 x 2' </th>
+                        <th class='header'> 1 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='delta'> 
+                        <th> Date </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['Date'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 1 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 2 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 3 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['3']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 4 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['4']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 5 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['5']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 6 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['6']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 7 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['7']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 8 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['8']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 9 </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['9']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class='delta'> 
+                        <th> Average Split </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> <em> {{ entry['Average']['String'] }} </em> </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr > 
+                        <th> Rank </th>
+                            {% for entry in data['3x3x2Min'] %}
+                                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2 class='title'>
+        Redline Pieces
+    </h2>
+    <div class='table-group'>
+        <div class='table'>
+            {% if data['2x15Min'] %}
+            <table> 
+                <thead>
+                    <tr>
+                        <th class='header'> 2 x 15' </th>
+                        <th class='header'> 1 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='delta'> 
+                        <th> Date </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['Date'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 1 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 2 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 3 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['3']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Average Split 1 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['Avg Split 1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> Distance 1 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['Distance 1'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 4 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['4']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 5 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['5']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 6 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['6']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> Average Split 2 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['Avg Split 2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Distance 2 </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['Distance 2'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr> 
+                        <th> Total Distance </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> <em> {{ entry['Total Distance'] }} </em> </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Rank </th>
+                            {% for entry in data['2x15Min'] %}
+                                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+        <div class='table'>
+            {% if data['2x20Min'] %}
+            <table> 
+                <thead>
+                    <tr>
+                        <th class='header'> 2 x 20' </th>
+                        <th class='header'> 1 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='delta'> 
+                        <th> Date </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['Date'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 1 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 2 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 3 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['3']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 4 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['4']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 5 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['5']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Average Split 1 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['Avg Split 1']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> Distance 1 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['Distance 1'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 6 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['6']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 7 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['7']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 8 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['8']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> 9 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['9']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> 10 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['10']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr> 
+                        <th> Average Split 2 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['Avg Split 2']['String'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Distance 2 </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['Distance 2'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr> 
+                        <th> Total Distance </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> <em> {{ entry['Total Distance'] }} </em> </td>                
+                            {% endfor %}
+                    </tr>
+                    <tr class='delta'> 
+                        <th> Rank </th>
+                            {% for entry in data['2x20Min'] %}
+                                <td class='right'> {{ entry['Rank'] }}/{{ entry['Rower Total'] }} </td>                
+                            {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+    
 </body>
 
 {% else %}

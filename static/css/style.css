@@ -15,8 +15,13 @@ h2{
     text-align: center;}
 .title{
     font-family: 'Montserrat', sans-serif;
-    color: #A5CFE2;
+    color: #4464AD;
     font-size: 40px;}
+.section-header{
+    font-family: 'Montserrat', sans-serif;
+    color: #A5CFE2;
+    font-size: 54px;
+}
 .rower{
     font-family: 'Montserrat', sans-serif;
     color: #4464AD ;
@@ -69,6 +74,8 @@ table {
     width: 700px;}
 .table-3{
     width: 500px;}
+.table-4{
+    width: 1500px;}
 
 tr:hover{
     background-color: #C0C0C0;}
@@ -119,7 +126,11 @@ div{}
 .table{
     display: inline-block;
     vertical-align: middle;
-    margin: auto 2%;
+    margin: 1%;
+}
+.table-group{
+    text-align: center;
+    max-width: 100%;
 }
 .chart{
     display: inline-block;

@@ -2,13 +2,20 @@ import csv
 import sys
 from os import listdir
 from os.path import isfile, join
-from translators import MaxWatt, RepMax, OneMinute, TwentyMinute, FortyMinute, search as s, Graphics as g
+from translators import MaxWatt, RepMax, OneMinute, TwentyMinute, FortyMinute, \
+						FourByFiveMinute, FiveByFiveMinute, TwoByFifteenMinute, \
+						TwoByTwentyMinute, ThreeByThreeByNinetySecond, \
+						ThreeByThreeByTwoMinute, search as s, Graphics as g
 
 def main(args):
 
 	# Types of tests/translators
 	translators = {'MaxWatt': MaxWatt, 'RepMax': RepMax, 'OneMinute': OneMinute, \
-					'TwentyMinute': TwentyMinute, 'FortyMinute': FortyMinute}
+					'TwentyMinute': TwentyMinute, 'FortyMinute': FortyMinute, \
+					'5x5Min': FiveByFiveMinute, '4x5Min': FourByFiveMinute, \
+					'2x15Min': TwoByFifteenMinute, '2x20Min': TwoByTwentyMinute,
+					'3x3x90Sec': ThreeByThreeByNinetySecond, \
+					'3x3x2Min': ThreeByThreeByTwoMinute}
 
 	# Find all rowing data files
 	mypath = 'raw_data/'

@@ -9,7 +9,8 @@ def searchRower(name):
 	RowerDB = db[name]
 	RowerData = []
 
-	Tests = ['Max Watt', 'Twenty Minute', 'One Minute', 'Forty Minute', 'Rep Max']
+	Tests = ['Max Watt', 'Twenty Minute', 'One Minute', 'Forty Minute', 'Rep Max', '4 by 5 Minute', \
+				'5 by 5 Minute', '2 by 15 Minute', '2 by 20 Minute', '3 by 3 by 90 Second', '3 by 3 by 2 Minute']
 
 	# Put all test items specific to one rower into a new collection
 	for test in Tests:
@@ -42,7 +43,6 @@ def searchTest(test):
 	RowerDB = db[test]
 	RowerData = []
 	Dates = []
-	rower_items = {}
 	result_dicts = []
 	# Put all test items specific to one test into a new collection
 	for rower in RowerDB.find({'Test': test}).sort([('Year', pymongo.ASCENDING), \
@@ -65,7 +65,6 @@ def searchTest(test):
 		result_dicts.append(temp_dict)
 		i += 1
 
-	rower_items['items'] = result_dicts
-	return rower_items
+	return result_dicts
 
 	client.close()

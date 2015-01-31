@@ -15,9 +15,18 @@ def search():
         onemin = []
         twentymin = []
         repmax = []
+        fourbyfivemin = []
+        fivebyfivemin = []
+        twobyfifteenmin = []
+        twobytwentymin = []
+        threebythreebyninetysec = []
+        threebythreebytwomin = []
 
         Tests = {'Max Watt': maxwatt, 'Twenty Minute': twentymin, 'One Minute': onemin, \
-            'Forty Minute': fortymin, 'Rep Max': repmax}
+            'Forty Minute': fortymin, 'Rep Max': repmax, '4 by 5 Minute': fourbyfivemin, \
+            '5 by 5 Minute': fivebyfivemin, '2 by 15 Minute': twobyfifteenmin, \
+            '2 by 20 Minute': twobytwentymin, '3 by 3 by 90 Second': threebythreebyninetysec, \
+            '3 by 3 by 2 Minute': threebythreebytwomin}
 
         name = request.form['user_search'].lower().title()
         rower_data = s.searchRower(name)
@@ -45,7 +54,12 @@ def search():
         rower_data['OM'] = onemin
         rower_data['TM'] = twentymin
         rower_data['RM'] = repmax
-
+        rower_data['4x5Min'] = fourbyfivemin
+        rower_data['5x5Min'] = fivebyfivemin
+        rower_data['2x15Min'] = twobyfifteenmin
+        rower_data['2x20Min'] = twobytwentymin
+        rower_data['3x3x90Sec'] = threebythreebyninetysec
+        rower_data['3x3x2Min'] = threebythreebytwomin
 
         return render_template('rower.html', data = rower_data, rower = name)
 
@@ -58,28 +72,49 @@ def results():
 
 @app.route('/results/MaxWatt')
 def MaxWatts():
-    MaxWatt_data = s.searchTest('Max Watt')
-    return render_template('MaxWatt.html', data = MaxWatt_data)
+    rower_items = {}
+    rower_items['items'] = s.searchTest('Max Watt')
+    return render_template('MaxWatt.html', data = rower_items)
 
 @app.route('/results/FortyMinute')
 def FortyMinute():
-    FortyMin_data = s.searchTest('Forty Minute')
-    return render_template('FortyMinute.html', data = FortyMin_data)
+    rower_items = {}
+    rower_items['items'] = s.searchTest('Forty Minute')
+    return render_template('FortyMinute.html', data = rower_items)
 
 @app.route('/results/TwentyMinute')
 def TwentyMinute():
-    TwentyMin_data = s.searchTest('Twenty Minute')
-    return render_template('TwentyMinute.html', data = TwentyMin_data)
+    rower_items = {}
+    rower_items['items'] = s.searchTest('Twenty Minute')
+    return render_template('TwentyMinute.html', data = rower_items)
 
 @app.route('/results/OneMinute')
 def OneMinute():
-    OneMin_data = s.searchTest('One Minute')
-    return render_template('OneMinute.html', data = OneMin_data)
+    rower_items = {}
+    rower_items['items'] = s.searchTest('One Minute')
+    return render_template('OneMinute.html', data = rower_items)
 
 @app.route('/results/RepMax')
 def RepMax():
-    RepMax_data = s.searchTest('Rep Max')
-    return render_template('RepMax.html', data = RepMax_data)
+    rower_items = {}
+    rower_items['items'] = s.searchTest('Rep Max')
+    return render_template('RepMax.html', data = rower_items)
+
+@app.route('/results/Redline')
+def Redline():
+    rower_items = {}
+    rower_items['2x15Min'] = s.searchTest('2 by 15 Minute')
+    rower_items['2x20Min'] = s.searchTest('2 by 20 Minute')
+    return render_template('Redline.html', data = rower_items)
+
+@app.route('/results/AT1')
+def ATOne():
+    rower_items = {}
+    rower_items['4x5Min'] = s.searchTest('4 by 5 Minute')
+    rower_items['5x5Min'] = s.searchTest('5 by 5 Minute')
+    rower_items['3x3x2Min'] = s.searchTest('3 by 3 by 2 Minute')
+    rower_items['3x3x90Sec'] = s.searchTest('3 by 3 by 90 Second')
+    return render_template('AT1.html', data = rower_items)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
