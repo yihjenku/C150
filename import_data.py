@@ -31,3 +31,7 @@ def import_data():
 				break
 
 	print 'Done translating data! Check output file for results.'
+
+	s.searchRower(args[0])
+	s.searchTest('Max Watt')
+	g.graphSplitChanges(args[0])

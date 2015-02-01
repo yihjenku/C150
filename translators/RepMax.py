@@ -42,7 +42,7 @@ def translate(infile):
 					total_rowers = int(row[0])
 
 				# Name
-				temp[keys[1]] = row[1].lower()
+				temp[keys[1]] = row[1]
 
 				# Squat
 				if(row[2] is ''):
@@ -79,7 +79,7 @@ def writeRepMax(RepMaxData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	# db.drop_collection('Rep Max')
+	#db.drop_collection('Rep Max')
 	RepMax = db['Rep Max']
 
 	# Write to text file
@@ -100,7 +100,7 @@ def writeRepMax(RepMaxData, total_rowers):
 			query = {'Day': RepMaxData[i]['Day'], \
 					'Month': RepMaxData[i]['Month'], \
 					'Year': RepMaxData[i]['Year'], \
-					'Name': RepMaxData[i]['Name'].lower(), \
+					'Name': RepMaxData[i]['Name'], \
 					'Test': 'Rep Max'}
 			update = RepMaxData[i]
 			update['Rower Total'] = total_rowers

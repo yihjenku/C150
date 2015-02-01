@@ -48,7 +48,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				# Name
-				temp[keys[1]] = row[1].lower()
+				temp[keys[1]] = row[1]
 
 				Splits = []
 				for k in range(2,13):
@@ -113,7 +113,7 @@ def writeTwentyMinute(TwentyMinData, total_rowers, split_change_ave):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	# db.drop_collection('Twenty Minute')
+	#db.drop_collection('Twenty Minute')
 	TwentyMinute = db['Twenty Minute']
 
 	# Write to text file
@@ -136,7 +136,7 @@ def writeTwentyMinute(TwentyMinData, total_rowers, split_change_ave):
 			query = {'Day': TwentyMinData[i]['Day'], \
 					'Month': TwentyMinData[i]['Month'], \
 					'Year': TwentyMinData[i]['Year'], \
-					'Name': TwentyMinData[i]['Name'].lower(), \
+					'Name': TwentyMinData[i]['Name'], \
 					'Test': 'Twenty Minute'}
 			update = TwentyMinData[i]
 			update['Rower Total'] = total_rowers
@@ -249,7 +249,3 @@ def get_Split_Changes(Splits, intervals = 2):
 		Split_Changes[str((i+1)*intervals)] = temp_changes
 
 	return Split_Changes
-
-
-
-

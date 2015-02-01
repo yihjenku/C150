@@ -42,7 +42,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				 # Name
-				temp[keys[1]] = row[1].lower()
+				temp[keys[1]] = row[1]
 
 				Splits = []
 				for k in range(2,7):
@@ -72,7 +72,7 @@ def writeFourByFiveMin(FourByFiveMinData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	# db.drop_collection('Forty Minute')
+	# db.drop_collection('4 by 5 Minute')
 	FourByFiveMinute = db['4 by 5 Minute']
 
 	for i in range(0, len(FourByFiveMinData)):
@@ -81,11 +81,10 @@ def writeFourByFiveMin(FourByFiveMinData, total_rowers):
 			query = {'Day': FourByFiveMinData[i]['Day'], \
 					'Month': FourByFiveMinData[i]['Month'], \
 					'Year': FourByFiveMinData[i]['Year'], \
-					'Name': FourByFiveMinData[i]['Name'].lower(), \
+					'Name': FourByFiveMinData[i]['Name'], \
 					'Test': '4 by 5 Minute'}
 			update = FourByFiveMinData[i]
 			update['Rower Total'] = total_rowers
 			FourByFiveMinute.update(query, update, True)
 
 	client.close()
-

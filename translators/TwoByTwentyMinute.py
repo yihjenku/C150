@@ -42,7 +42,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				 # Name
-				temp[keys[1]] = row[1].lower()
+				temp[keys[1]] = row[1]
 
 				Splits = []
 				for k in range(2,8):
@@ -105,7 +105,7 @@ def writeTwoByTwentyMin(TwoByTwentyMinData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	# db.drop_collection('2 by 20 Minute')
+	#db.drop_collection('2 by 20 Minute')
 	TwoByTwentyMinute = db['2 by 20 Minute']
 
 	for i in range(0, len(TwoByTwentyMinData)):
@@ -114,7 +114,7 @@ def writeTwoByTwentyMin(TwoByTwentyMinData, total_rowers):
 			query = {'Day': TwoByTwentyMinData[i]['Day'], \
 					'Month': TwoByTwentyMinData[i]['Month'], \
 					'Year': TwoByTwentyMinData[i]['Year'], \
-					'Name': TwoByTwentyMinData[i]['Name'].lower(), \
+					'Name': TwoByTwentyMinData[i]['Name'], \
 					'Test': '2 by 20 Minute'}
 			update = TwoByTwentyMinData[i]
 			update['Rower Total'] = total_rowers
@@ -122,4 +122,3 @@ def writeTwoByTwentyMin(TwoByTwentyMinData, total_rowers):
 			print TwoByTwentyMinData[i]
 
 	client.close()
-

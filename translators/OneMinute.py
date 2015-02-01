@@ -42,7 +42,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				# Name
-				temp[keys[1]] = row[1].lower()
+				temp[keys[1]] = row[1]
 
 				if(row[2] is ''):
 					Test_AvgSplit = {'Minute': '', 'Second': '', 'Millisecond': ''}
@@ -86,7 +86,7 @@ def writeOneMinute(OneMinData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	# db.drop_collection('One Minute')
+	#db.drop_collection('One Minute')
 	OneMinute = db['One Minute']
 
 	# Write to text file
@@ -107,7 +107,7 @@ def writeOneMinute(OneMinData, total_rowers):
 			query = {'Day': OneMinData[i]['Day'], \
 					'Month': OneMinData[i]['Month'], \
 					'Year': OneMinData[i]['Year'], \
-					'Name': OneMinData[i]['Name'].lower(), \
+					'Name': OneMinData[i]['Name'], \
 					'Test': 'One Minute'}
 			update = OneMinData[i]
 			update['Rower Total'] = total_rowers
@@ -160,4 +160,3 @@ def writeOneMinute(OneMinData, total_rowers):
 
 	file_out.close()
 	client.close()
-

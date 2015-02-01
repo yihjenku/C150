@@ -1,18 +1,17 @@
 from flask import Flask, render_template, request
 import requests
 from translators import search as s, Graphics as g
-from AddInfo import add_info
 import import_data
+from AddInfo import add_info
 
 app = Flask(__name__)
 app.config['DEBUG'] = True  # Disable this for deployment
 
 @app.route('/', methods=['POST', 'GET'])
 def search():
-
-    import_data.import_data()
-
     if request.method == 'POST':
+
+        import_data.import_data
 
         maxwatt = []
         fortymin = []
@@ -32,7 +31,7 @@ def search():
             '2 by 20 Minute': twobytwentymin, '3 by 3 by 90 Second': threebythreebyninetysec, \
             '3 by 3 by 2 Minute': threebythreebytwomin}
 
-        name = request.form['user_search'].lower()
+        name = request.form['user_search'].lower().title()
         rower_data = s.searchRower(name)
         if rower_data['items']:
             g.graphOlympic(name)
@@ -47,7 +46,7 @@ def search():
                     mod.sort(key=lambda k: k['Day'])
 
         for member in add_info['items']:
-            if name == member['Last'].lower():
+            if name == member['Last']:
                 rower_data['First'] = member['First']
                 rower_data['Last'] = member['Last']
                 rower_data['School'] = member['School']

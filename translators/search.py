@@ -5,8 +5,8 @@ def searchRower(name):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	db.drop_collection(name.lower())
-	RowerDB = db[name.lower()]
+	db.drop_collection(name)
+	RowerDB = db[name]
 	RowerData = []
 
 	Tests = ['Max Watt', 'Twenty Minute', 'One Minute', 'Forty Minute', 'Rep Max', '4 by 5 Minute', \
@@ -16,7 +16,7 @@ def searchRower(name):
 	for test in Tests:
 		database = db[test]
 		i = 1
-		for rower in database.find({'Name': name.lower()}).sort([('Year', pymongo.ASCENDING), \
+		for rower in database.find({'Name': name}).sort([('Year', pymongo.ASCENDING), \
 														('Month', pymongo.ASCENDING), \
 														('Day', pymongo.ASCENDING), \
 														('Rank', pymongo.ASCENDING)] ):
@@ -25,7 +25,7 @@ def searchRower(name):
 			query = {'Day': rower['Day'], \
 					'Month': rower['Month'], \
 					'Year': rower['Year'], \
-					'Name': rower['Name'].lower(), \
+					'Name': rower['Name'], \
 					'Test': rower['Test']}
 			update = rower
 			update['index'] = i

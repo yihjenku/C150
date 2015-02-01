@@ -7,8 +7,8 @@ def graphOlympic(name):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	s.search(name.lower())
-	RowerDB = db[name.lower()]
+	s.search(name)
+	RowerDB = db[name]
 
 	WeightData = []
 
@@ -67,7 +67,7 @@ def graphOlympic(name):
 	# print WeightData
 	weight = weightCalc(WeightData)
 
-	plotRadar(name.title(), weight, FortyMinuteData, OneMinuteData, RepMaxData, MaxWattData)
+	plotRadar(name, weight, FortyMinuteData, OneMinuteData, RepMaxData, MaxWattData)
 
 
 def RMAverage(squat, deadlift):
@@ -111,4 +111,3 @@ def plotRadar(Name, Weight, FMData, OMData, RMData, MWData):
 	radar_chart.add('Olympic Standard', [1, 1, 1, 1,])
 
 	radar_chart.render_to_file('static/OlympicGraphs/' + Name + '.svg')
-
