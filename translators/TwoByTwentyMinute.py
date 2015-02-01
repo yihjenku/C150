@@ -105,7 +105,7 @@ def writeTwoByTwentyMin(TwoByTwentyMinData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	#db.drop_collection('2 by 20 Minute')
+	db.drop_collection('2 by 20 Minute')
 	TwoByTwentyMinute = db['2 by 20 Minute']
 
 	for i in range(0, len(TwoByTwentyMinData)):
