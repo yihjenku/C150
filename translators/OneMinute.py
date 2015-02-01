@@ -86,8 +86,8 @@ def writeOneMinute(OneMinData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	db.drop_collection('One Minute')
-	# OneMinute = db['One Minute']
+	# db.drop_collection('One Minute')
+	OneMinute = db['One Minute']
 
 	# Write to text file
 	textfilename = 'One Minute.txt'
