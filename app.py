@@ -32,6 +32,9 @@ def search():
             '3 by 3 by 2 Minute': threebythreebytwomin}
 
         name = request.form['user_search'].lower().title()
+        # temporary bug fix 
+        if name == 'Mcgrattan':
+            name = 'McGrattan'
         rower_data = s.searchRower(name)
         if rower_data['items']:
             g.graphOlympic(name)
