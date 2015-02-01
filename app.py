@@ -11,7 +11,7 @@ app.config['DEBUG'] = True  # Disable this for deployment
 def search():
     if request.method == 'POST':
 
-        import_data.import_data
+        import_data.import_data()
 
         maxwatt = []
         fortymin = []
