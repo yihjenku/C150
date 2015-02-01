@@ -106,6 +106,7 @@ def writeTwoByFifteenMin(TwoByFifteenMinData, total_rowers):
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
 	# db.drop_collection('2 by 15 Minute')
+	# Brian McGrattan is the worst
 	TwoByFifteenMinute = db['2 by 15 Minute']
 
 	for i in range(0, len(TwoByFifteenMinData)):
