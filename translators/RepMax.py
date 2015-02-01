@@ -79,7 +79,7 @@ def writeRepMax(RepMaxData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	db.drop_collection('Rep Max')
+	# db.drop_collection('Rep Max')
 	RepMax = db['Rep Max']
 
 	# Write to text file

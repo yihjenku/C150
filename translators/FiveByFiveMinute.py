@@ -78,7 +78,7 @@ def writeFourByFiveMin(FiveByFiveMinData, total_rowers):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	db.drop_collection('5 by 5 Minute')
+	# db.drop_collection('5 by 5 Minute')
 	FourByFiveMinute = db['5 by 5 Minute']
 
 	for i in range(0, len(FiveByFiveMinData)):

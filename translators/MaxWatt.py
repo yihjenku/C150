@@ -82,7 +82,7 @@ def writeMaxWatt(MaxWattData, total_rowers, outfile = 'Max Watt.txt', database =
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	db.drop_collection('Max Watt')
+	# db.drop_collection('Max Watt')
 	MaxWatt = db[database]
 
 	# Write to text file

@@ -110,7 +110,7 @@ def writeFortyMinute(FortyMinData, total_rowers, split_change_ave):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	db.drop_collection('Forty Minute')
+	# db.drop_collection('Forty Minute')
 	FortyMinute = db['Forty Minute']
 
 	# Write to text file
