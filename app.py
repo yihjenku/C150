@@ -2,12 +2,16 @@ from flask import Flask, render_template, request
 import requests
 from translators import search as s, Graphics as g
 from AddInfo import add_info
+import import_data
 
 app = Flask(__name__)
 app.config['DEBUG'] = True  # Disable this for deployment
 
 @app.route('/', methods=['POST', 'GET'])
 def search():
+
+    import_data.import_data()
+
     if request.method == 'POST':
 
         maxwatt = []

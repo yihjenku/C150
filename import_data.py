@@ -7,7 +7,7 @@ from translators import MaxWatt, RepMax, OneMinute, TwentyMinute, FortyMinute, \
 						TwoByTwentyMinute, ThreeByThreeByNinetySecond, \
 						ThreeByThreeByTwoMinute, search as s, Graphics as g
 
-def main(args):
+def import_data():
 
 	# Types of tests/translators
 	translators = {'MaxWatt': MaxWatt, 'RepMax': RepMax, 'OneMinute': OneMinute, \
@@ -31,10 +31,3 @@ def main(args):
 				break
 
 	print 'Done translating data! Check output file for results.'
-
-	s.searchRower(args[0])
-	s.searchTest('Max Watt')
-	g.graphSplitChanges(args[0])
-
-if __name__ == "__main__":
-	main(sys.argv[1:])
