@@ -48,7 +48,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				# Name
-				temp[keys[1]] = row[1]
+				temp[keys[1]] = row[1].lower()
 
 				Splits = []
 				for k in range(2,13):
@@ -136,7 +136,7 @@ def writeTwentyMinute(TwentyMinData, total_rowers, split_change_ave):
 			query = {'Day': TwentyMinData[i]['Day'], \
 					'Month': TwentyMinData[i]['Month'], \
 					'Year': TwentyMinData[i]['Year'], \
-					'Name': TwentyMinData[i]['Name'], \
+					'Name': TwentyMinData[i]['Name'].lower(), \
 					'Test': 'Twenty Minute'}
 			update = TwentyMinData[i]
 			update['Rower Total'] = total_rowers

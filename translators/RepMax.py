@@ -42,7 +42,7 @@ def translate(infile):
 					total_rowers = int(row[0])
 
 				# Name
-				temp[keys[1]] = row[1]
+				temp[keys[1]] = row[1].lower()
 
 				# Squat
 				if(row[2] is ''):
@@ -100,7 +100,7 @@ def writeRepMax(RepMaxData, total_rowers):
 			query = {'Day': RepMaxData[i]['Day'], \
 					'Month': RepMaxData[i]['Month'], \
 					'Year': RepMaxData[i]['Year'], \
-					'Name': RepMaxData[i]['Name'], \
+					'Name': RepMaxData[i]['Name'].lower(), \
 					'Test': 'Rep Max'}
 			update = RepMaxData[i]
 			update['Rower Total'] = total_rowers

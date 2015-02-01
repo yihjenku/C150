@@ -42,7 +42,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				# Name
-				temp[keys[1]] = row[1]
+				temp[keys[1]] = row[1].lower()
 
 				if(row[2] is ''):
 					Test_AvgSplit = {'Minute': '', 'Second': '', 'Millisecond': ''}
@@ -107,7 +107,7 @@ def writeOneMinute(OneMinData, total_rowers):
 			query = {'Day': OneMinData[i]['Day'], \
 					'Month': OneMinData[i]['Month'], \
 					'Year': OneMinData[i]['Year'], \
-					'Name': OneMinData[i]['Name'], \
+					'Name': OneMinData[i]['Name'].lower(), \
 					'Test': 'One Minute'}
 			update = OneMinData[i]
 			update['Rower Total'] = total_rowers

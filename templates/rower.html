@@ -5,7 +5,7 @@
 {% if data['items'] %}
 <div class='Rower-Info'>
     <h2 class='rower'>
-        {{ data['First'] }} {{ rower }} 
+        {{ data['First'] }} {{ data['Last'] }} 
     </h2>
     <p> <span class='category'> School: </span> <span> {{ data['School']}} {{ data['Year'] }} </span> <span class='category'> Side: </span> <span> {{ data['Side'] }} </p>
 </div>
@@ -27,7 +27,7 @@
                 <thead>
                     <tr>
                         <th class='header'> {{ entry['Date'] }} </th>
-                        <th class='header'> {{ rower }} </th>
+                        <th class='header'> {{ data['Last'] }} </th>
                         <th class='header'> Team </th>
                     </tr>
                 </thead>
@@ -101,7 +101,7 @@
                 <thead>
                     <tr>
                         <th class='header'> {{ entry['Date'] }} </th>
-                        <th class='header'> {{ rower }} </th>
+                        <th class='header'> {{ data['Last'] }} </th>
                         <th class='header'> Team </th>
                     </tr>
                 </thead>

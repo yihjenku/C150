@@ -42,7 +42,7 @@ def translate(infile):
 					total_rowers = int(row[0])
 
 				# Name
-				temp[keys[1]] = row[1]
+				temp[keys[1]] = row[1].lower()
 
 				# Trial 1
 				if(row[2] is ''):
@@ -101,7 +101,7 @@ def writeMaxWatt(MaxWattData, total_rowers, outfile = 'Max Watt.txt', database =
 			query = {'Day': MaxWattData[i]['Day'], \
 					'Month': MaxWattData[i]['Month'], \
 					'Year': MaxWattData[i]['Year'], \
-					'Name': MaxWattData[i]['Name'], \
+					'Name': MaxWattData[i]['Name'].lower(), \
 					'Test': 'Max Watt'}
 			update = MaxWattData[i]
 			update['Rower Total'] = total_rowers

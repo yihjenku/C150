@@ -3,14 +3,15 @@ from pygal.style import BlueStyle, LightenStyle
 import pymongo
 import search as s
 import os
+from AddInfo import add_info
 from config import MONGO_PORT
 
 def graphOlympic(name):
 
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	s.searchRower(name)
-	RowerDB = db[name]
+	s.searchRower(name.lower())
+	RowerDB = db[name.lower()]
 
 	WeightData = []
 
@@ -69,7 +70,11 @@ def graphOlympic(name):
 	# print WeightData
 	weight = weightCalc(WeightData)
 
-	plotRadar(name, weight, FortyMinuteData, OneMinuteData, RepMaxData, MaxWattData)
+	for member in add_info['items']:
+		if name == member['Last'].lower():
+			lastname = member['Last']
+            
+	plotRadar(lastname, weight, FortyMinuteData, OneMinuteData, RepMaxData, MaxWattData)
 
 
 def RMAverage(squat, deadlift):
@@ -121,8 +126,11 @@ def plotRadar(Name, Weight, FMData, OMData, RMData, MWData):
 def graphSplitChanges(name):
 	client = pymongo.MongoClient('localhost', MONGO_PORT)
 	db = client['C150']
-	s.searchRower(name)
-	RowerDB = db[name]
+	s.searchRower(name.lower())
+	RowerDB = db[name.lower()]
+	for member in add_info['items']:
+		if name == member['Last'].lower():
+			lastname = member['Last']
 
 	for rower in RowerDB.find({'Test': 'Forty Minute'}) \
 						.sort( [('Year', pymongo.ASCENDING), \
@@ -137,7 +145,7 @@ def graphSplitChanges(name):
 			else:
 				FortyMinRowerData.append(float(rower['FortySplitChanges'][key]['String']))
 			FortyMinTeamData.append(rower['40AvgSplitChange'][key])
-		plotLinear(name, FortyMinRowerData, FortyMinTeamData, 'Forty Minute', rower['index'])
+		plotLinear(lastname, FortyMinRowerData, FortyMinTeamData, 'Forty Minute', rower['index'])
 
 	for rower in RowerDB.find({'Test': 'Twenty Minute'}) \
 						.sort( [('Year', pymongo.ASCENDING), \
@@ -152,7 +160,7 @@ def graphSplitChanges(name):
 			else:
 				TwentyMinRowerData.append(float(rower['TwentySplitChanges'][key]['String']))
 			TwentyMinTeamData.append(rower['20AvgSplitChange'][key])
-		plotLinear(name, TwentyMinRowerData, TwentyMinTeamData, 'Twenty Minute', rower['index'])
+		plotLinear(lastname, TwentyMinRowerData, TwentyMinTeamData, 'Twenty Minute', rower['index'])
 
 
 def plotLinear(Name, RowerData, TeamData, TestType, TestNumber):
@@ -165,8 +173,8 @@ def plotLinear(Name, RowerData, TeamData, TestType, TestNumber):
 	if TestType == 'Forty Minute':
 		if not os.path.isdir('static/FortyMinute/'):
  			os.mkdir('static/FortyMinute/')
-		line_chart.render_to_file('static/FortyMinute/' + Name + str(TestNumber) + '.svg')
+		line_chart.render_to_file('static/FortyMinute/' + Name.title() + str(TestNumber) + '.svg')
 	if TestType == 'Twenty Minute':
 		if not os.path.isdir('static/TwentyMinute/'):
 			os.mkdir('static/TwentyMinute/')
-		line_chart.render_to_file('static/TwentyMinute/' + Name + str(TestNumber) + '.svg')
+		line_chart.render_to_file('static/TwentyMinute/' + Name.title() + str(TestNumber) + '.svg')

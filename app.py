@@ -32,7 +32,7 @@ def search():
             '2 by 20 Minute': twobytwentymin, '3 by 3 by 90 Second': threebythreebyninetysec, \
             '3 by 3 by 2 Minute': threebythreebytwomin}
 
-        name = request.form['user_search'].lower().title()
+        name = request.form['user_search'].lower()
         rower_data = s.searchRower(name)
         if rower_data['items']:
             g.graphOlympic(name)
@@ -47,8 +47,9 @@ def search():
                     mod.sort(key=lambda k: k['Day'])
 
         for member in add_info['items']:
-            if name == member['Last']:
+            if name == member['Last'].lower():
                 rower_data['First'] = member['First']
+                rower_data['Last'] = member['Last']
                 rower_data['School'] = member['School']
                 rower_data['Year'] = member['Year']
                 rower_data['Side'] = member['Side']

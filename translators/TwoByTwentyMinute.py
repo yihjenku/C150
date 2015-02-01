@@ -42,7 +42,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				 # Name
-				temp[keys[1]] = row[1]
+				temp[keys[1]] = row[1].lower()
 
 				Splits = []
 				for k in range(2,8):
@@ -114,7 +114,7 @@ def writeTwoByTwentyMin(TwoByTwentyMinData, total_rowers):
 			query = {'Day': TwoByTwentyMinData[i]['Day'], \
 					'Month': TwoByTwentyMinData[i]['Month'], \
 					'Year': TwoByTwentyMinData[i]['Year'], \
-					'Name': TwoByTwentyMinData[i]['Name'], \
+					'Name': TwoByTwentyMinData[i]['Name'].lower(), \
 					'Test': '2 by 20 Minute'}
 			update = TwoByTwentyMinData[i]
 			update['Rower Total'] = total_rowers

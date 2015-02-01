@@ -42,7 +42,7 @@ def translate(infile):
 				temp[keys[0]] = Rank
 
 				 # Name
-				temp[keys[1]] = row[1]
+				temp[keys[1]] = row[1].lower()
 
 				Splits = []
 				for k in range(2,7):
@@ -81,7 +81,7 @@ def writeFourByFiveMin(FourByFiveMinData, total_rowers):
 			query = {'Day': FourByFiveMinData[i]['Day'], \
 					'Month': FourByFiveMinData[i]['Month'], \
 					'Year': FourByFiveMinData[i]['Year'], \
-					'Name': FourByFiveMinData[i]['Name'], \
+					'Name': FourByFiveMinData[i]['Name'].lower(), \
 					'Test': '4 by 5 Minute'}
 			update = FourByFiveMinData[i]
 			update['Rower Total'] = total_rowers
